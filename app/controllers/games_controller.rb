@@ -8,7 +8,7 @@ class GamesController < ApplicationController
 
     def show
       @game = Game.find_by(id: params[:id])
-      @category = Category.find_by(id: @game.category_id)
+      @category = Category.find_by(id: 1) # this is a christian game, there is only one category
       @current_user = User.find_by(id: session[:user_id])
       @questions = Question.all.select {|q| q.category_id == @category.id.to_i}
       @game_questions = @questions.sample(1)

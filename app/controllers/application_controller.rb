@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-
   def logged_in?
     current_user != true
   end
@@ -17,5 +16,4 @@ class ApplicationController < ActionController::Base
   def is_authorized
     redirect_to new_user_path if !current_user
   end
-
 end
