@@ -19,7 +19,7 @@ class GamesController < ApplicationController
     def user_responses
         @current_user = User.find_by(id: session[:user_id])
         @correct_answer = Question.find_by(id: @current_user.question_asked).correct_answer
-        @game = Game.find_by(user_id: @current_user.id)
+        @game = Game.find_by(id: @current_user.id)
         if params[@correct_answer]
           @current_user.score ? @current_user.score += 1 : @current_user.score = 0
           @current_user.save
@@ -30,6 +30,7 @@ class GamesController < ApplicationController
     end
 
     def lose
+      p "Incorrect Answer <====="
       @current_user = User.find_by(id: session[:user_id])
       @current_user.score -= 10
       @current_user.save
@@ -47,6 +48,7 @@ class GamesController < ApplicationController
     def create
       if params["Create"] == "Start Game"
         @category = Category.find_by(id: params[:category][:category_id].to_i)
+        p "Starting Game <===== + #{@category.name}"
         @questions = Question.all.select {|q| q.category_id == @category.id}
         @game = Game.create(user_id: session[:user_id], category_id: @category.id)
         redirect_to game_path(@game.id)

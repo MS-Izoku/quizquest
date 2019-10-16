@@ -12,9 +12,9 @@
 
 
 <h2>Your current score is <%= @current_user.score %></h2>
-<!-- Solo Game -->
-  <%# 1. collection_select %> <br>
-    <%# 2. submit the category %> <br>
+
+ <br>
+    <br>
 
     <%= form_tag games_path do %>
      <label> Solo Game:</label><br>
@@ -22,7 +22,6 @@
      <input type="submit" value="Start Game" name="Create"> <br>
    <% end %>
 
-  <%#  3. redirect_to games/:id with the submitted category%>
 
 <br>
  <%= form_tag games_path do %>
